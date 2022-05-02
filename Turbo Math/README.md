@@ -1,8 +1,8 @@
 # Turbo Math: A basic Android game based on quick arithmetic
 
-![Missing Start](/screenshots/TurboMath1.png?raw=true "Start Screen")
-![Missing Gameplay](/screenshots/TurboMath2.png?raw=true "Gameplay Screen")
-![Missing Score](/screenshots/TurboMath3.png?raw=true "Score Screen")
+![Missing Start](/screenshots/TurboMath1.png "Start Screen")
+![Missing Gameplay](/screenshots/TurboMath2.png "Gameplay Screen")
+![Missing Score](/screenshots/TurboMath3.png "Score Screen")
 
 
 ### About: 
