@@ -1,5 +1,5 @@
 # Welcome to my DevFolio!
-This repo contains some of my various programming projects. 
+This repo contains some of my favorite programming projects. 
 Below I've provided a brief description. More detailed description contained within projects own README
 
 
