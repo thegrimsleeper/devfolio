@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TurboMath</string>
+
+    <!--    Title Fragment strings  -->
+    <string name="title_text">Turbo Math</string>
+    <string name="title_play">Play</string>
+
+    <!--    Game Fragment strings  -->
+    <string name="game_placeholder_problem">Math here</string>
+    <string name="game_placeholder_buttons">A/B</string>
+    <string name="game_score">Score: %d</string>
+
+    <!--    Score Fragment strings  -->
+    <string name="score_placeholder_text">Good Job</string>
+    <string name="score_placeholder_results">100</string>
+    <string name="score_button_text">Play Again?</string>
+    <string name="score_text">%s!!!</string>
+    <string name="score_results">Final score: %d</string>
+
+
+    <!--    About Fragment strings  -->
+    <string name="about_text">This game I made</string>
+
+    <!--    Rule Fragment strings  -->
+    <string name="rule_text">Solve Math Fast</string>
+
+</resources>
