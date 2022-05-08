@@ -1,6 +1,6 @@
 # Welcome to my DevFolio!
 This repo contains some of my favorite programming projects. 
-Below I've provided a brief description. More detailed description contained within projects own README
+Below I've provided a brief description. More detailed description contained within each projects README
 
 
 ## Projects
