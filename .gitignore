@@ -1,0 +1,16 @@
+# Pycache Files
+**/__pycache__/
+**/*.pyc
+
+# Virtual Environment
+/venv
+.env 
+
+# Django stuff
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# OS files
+.DS_Store

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/navTitleFrag">
+
+    <fragment
+        android:id="@+id/navTitleFrag"
+        android:name="com.example.turbomath.screens.title.TitleFragment"
+        android:label="navTitleFrag" >
+        <action
+            android:id="@+id/action_navTitleFrag_to_navGameFragment"
+            app:destination="@id/navGameFragment"
+            app:popUpTo="@id/navTitleFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/navGameFragment"
+        android:name="com.example.turbomath.screens.game.GameFragment"
+        android:label="navGameFragment" >
+        <action
+            android:id="@+id/action_navGameFragment_to_navScoreFragment"
+            app:destination="@id/navScoreFragment"
+            app:popUpTo="@id/navTitleFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/navScoreFragment"
+        android:name="com.example.turbomath.screens.score.ScoreFragment"
+        android:label="navScoreFragment" >
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_navScoreFragment_to_navGameFragment"
+            app:destination="@id/navGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.turbomath.screens.about.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.example.turbomath.screens.rules.RulesFragment"
+        android:label="RulesFragment" />
+</navigation>
