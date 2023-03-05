@@ -1,8 +1,8 @@
 # Block: A basic Tetris-esque game written in Python using Pygame.
 
-![Missing Start](https://github.com/thegrimsleeper/devfolio/blob/c7fe3f8610098b935e11f18d30ab91237e0c0669/Block%20Game/screenshots/blocks1.PNG "Start Screen")
-![Missing Gameplay](https://github.com/thegrimsleeper/devfolio/blob/c7fe3f8610098b935e11f18d30ab91237e0c0669/Block%20Game/screenshots/blocks2.PNG "Gameplay Screen")
-![Missing Score](https://github.com/thegrimsleeper/devfolio/blob/c7fe3f8610098b935e11f18d30ab91237e0c0669/Block%20Game/screenshots/blocks3.PNG "Score Screen")
+![Missing Start](../screenshots/blocks1.PNG "Start Screen")
+![Missing Gameplay](../screenshots/blocks2.PNG "Gameplay Screen")
+![Missing Score](../screenshots/blocks3.PNG "Score Screen")
 
 
 ### About: 
