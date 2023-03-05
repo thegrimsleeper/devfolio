@@ -3,7 +3,7 @@
 **/*.pyc
 
 # Virtual Environment
-/venv
+venv/
 .env 
 
 # Django stuff
