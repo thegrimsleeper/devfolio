@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ city.city_name }} Forecast{% endblock title %}
+
+{% block content %}
+    <!-- Future Forecast Section -->
+    <section class="section pb-1 pt-5">
+        <div class="container">
+            <h1 class="title has-text-centered">{{ city.city_name }} Outlook</h1>
+            <div class="columns">
+                {% for k,v in weather.items %}
+                <div class="column is-2">
+                    <div class="box has-background-grey-lighter" style="border-radius: 25px">
+                        <article class="media">
+                            <div class="media-content my-auto">
+                                <div class="content" style="border: 1.5px solid black; border-radius: 15px">
+                                    <div class="column">
+                                        <p class="has-text-centered has-text-weight-bold">{{ v.date }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media-right ml-0">
+                                <div class="column pb-1">
+                                    <p class="has-text-danger-dark has-text-weight-medium">H: {{ v.high|floatformat }}° F</p>
+                                </div>
+                                <div class="column pt-1">
+                                    <p class="has-text-info-dark has-text-weight-medium">L: {{ v.low|floatformat }}° F</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>  
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <hr>
+    <!-- Detailed Forecast; Wasn't every really a 'key' component to this; so just dumping it on screen -->
+    <section class="section pt-1">
+        <div class="container">
+            <h1 class="title has-text-centered">Detailed Outlook</h1>
+            <div class="columns">
+                <div class="column is-offset-4 is-4 has-text-centered">
+                    {% for k,v in weather.items %}
+                        <p class="has-text-weight-bold">{{ v.date }}</p>
+                            {% for int,temp in v.items %}
+                                {% if forloop.counter < v|length|add:"-2" %}
+                                    <p>{{int}} --> {{temp}}° F</p>
+                                {% endif %}
+                            {% endfor %}
+                            <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
+
+<!--
+    style="border: 1px solid black"
+-->

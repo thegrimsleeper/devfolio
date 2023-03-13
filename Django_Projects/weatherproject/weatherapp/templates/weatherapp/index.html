@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Shocking Weather{% endblock title %}
+
+{% block content %}
+    <!-- Current City Weather Block-->
+    <section class="section pb-1 pt-5">
+        <div class="container">
+            <p class="has-text-centered">IP is totally - {{ REMOTE_ADDR }}</p>
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p class="column">
+                                        <span class="title">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature|floatformat }}° F</span>
+                                        <br> {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <figure class="image is-50x50">
+                                    <form action="{% url 'weatherapp:add_url' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="city" value="{{ weather.city }}">
+                                        <input type="hidden" name="lat" value="{{ weather.latitude }}">
+                                        <input type="hidden" name="lon" value="{{ weather.longitude }}">
+                                        <button type="submit"><img style="height: 24; width: 24" src="{% static 'weatherapp/plus.png' %}" alt="Image"></button>
+                                    </form>
+                                </figure>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <hr>
+    <!-- Favorited Cities Section-->
+    <section class="section pt-1">
+        <div class="container">
+            <h1 class="title has-text-centered">Favorited Cities</h1>
+            {% if city_list %}
+                <div class="columns">
+                    {% for city in favorite_cities_list %}
+                        <!-- Favorite City Current Weather -->
+                        <div class="m-1 column is-4" style="border: 1px solid darkgrey; border-radius: 20px">
+                            <article class="media">
+                                <div class="media-left">
+                                    <figure class="image is-50x50">
+                                        <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p class="column">
+                                            <a href="{% url 'weatherapp:forecast_url' pk=city.pk %}">
+                                                <span class="title">{{ city.city }}</span>
+                                            </a>
+                                            <br>
+                                            <span class="subtitle">{{ city.temperature|floatformat }}° F</span>
+                                            <br> {{ city.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <figure class="image is-50x50">
+                                        <form action="{% url 'weatherapp:delete_url' pk=city.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit"><img style="height: 24; width: 24" src="{% static 'weatherapp/minus.png' %}" alt="Image"></button>
+                                        </form>
+                                    </figure>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- After 3rd city, start new row -->
+                        {% if forloop.counter|divisibleby:3 %}
+                            </div>
+                            <div class="columns">
+                        {% endif %}
+                    {% endfor %}    
+                </div>
+            {% else %}
+                <p class="is-italic has-text-centered">No favorites, click the '+' to add one</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
+
+
+<!-- 
+    style="border: 1px solid black" 
+-->

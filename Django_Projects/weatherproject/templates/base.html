@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Title -->
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <img style="border-radius: 20px;" src="{% static 'images/weathernavicon.gif' %}" width="50" height="50">
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="{% url 'weatherapp:index_url' %}" class="navbar-item">
+          Home
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Banner -->
+  <section class="hero is-small is-info">
+    <div class="hero-body">
+      <div class="container">
+        <div class="column is-offset-4 is-4">
+          <h1 class="title has-text-centered">Search a City</h1>
+          <form action="{% url 'weatherapp:index_url' %}" method="get">
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                {{ form.city_name }}
+              </div>
+              <div class="control">
+                <button class="button is-dark">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block content %}
+  {% endblock content %}  
+  
+</body>
+</html>
+
+<!-- 
+    style="border: 1px solid black" 
+-->
+
+

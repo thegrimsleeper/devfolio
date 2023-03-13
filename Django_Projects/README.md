@@ -6,3 +6,9 @@
 Simply to do list and task tracker. Simply CRUD.
 ![Empty Screenshot](../screenshots/todoEmpty.png "Empty")
 ![Empty Screenshot](../screenshots/todoTasks.png "Tasks")
+
+
+### Weather App
+Current weather and forecasts of searched city
+![Empty Screenshot](../screenshots/weatherHome.png "Home")
+![Empty Screenshot](../screenshots/weatherForecast.png "Forecast")
