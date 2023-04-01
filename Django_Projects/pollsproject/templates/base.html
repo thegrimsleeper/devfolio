@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- jquery -->
+    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> {% endcomment %}
+    {% block extrahead %}{% endblock extrahead %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <img class="navbar-item" src="https://bulma.io/images/bulma-logo.png" width="108" height="22">
+            <!-- Burger Menu -->
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+      
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'pollsapp:index_url' %}">Home</a>
+                <a class="navbar-item" href="{% url 'pollsapp:newpoll_url' %}">Create</a>
+            </div>
+            
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if user.is_authenticated %}
+                        <a class="button is-dark" href="#">{{ user.username }}</a>
+                        <a class="button is-danger is-dark" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="button is-primary" href="{% url 'pollsapp:signup_url' %}"><strong>Sign up</strong></a>
+                        <a class="button is-dark" href="{% url 'login' %}">Log in</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+
+      {% block content %}
+      {% endblock content %}
+</body>
+
+<!-- Necessary for Navbar Burger Menu (src: https://bulma.io/documentation/components/navbar/) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      });
+</script>
+</html>

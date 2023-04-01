@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Results{% endblock title %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-third is-offset-one-third">
+                <h1 class="title">{{ question.question_text|title }}</h1>
+                <ul>
+                    {% for choice in question.choice_set.all %}
+                        <li class="subtitle">{{ choice.choice_text|capfirst }} has <span class="has-text-info-dark">{{ choice.votes }}</span> vote{{ choice.votes|pluralize }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

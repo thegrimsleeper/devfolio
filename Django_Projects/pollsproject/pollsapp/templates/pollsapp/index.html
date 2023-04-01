@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Head -->
+{% block extrahead %} 
+<link rel="stylesheet" href="{% static 'pollsapp/style.css' %}">
+{% endblock extrahead %}
+{% block title %}Polls Project | Vote on Things{% endblock title %}
+
+<!-- Body -->
+{% block content %}
+<section class="section pt-5">
+    <div class="container">
+        <h1 class="title has-text-centered">Vote on something</h1>
+        <hr class='mb-1'>
+        <div class="columns">
+            <div class="column is-one-third is-offset-one-third">
+                {% if question_list %}
+                {% for question in question_list %}
+                <div class="card my-3">
+                    <div class="card-content py-2">
+                        <p class="title is-6">{{ question }}</p>
+                        <p class="subtitle is-6">
+                            {% if question.choice_set.all %}
+                                {% for choice in question.choice_set.all %}
+                                    {% if forloop.counter > 2 %}
+                                        ...
+                                    {% else %}
+                                        {{ choice }} |
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                No Choices...
+                            {% endif %}
+                        </p>
+                    </div>
+                    <footer class="card-footer" >
+                        <p class="card-footer-item card-button">
+                            <span><a href="{% url 'pollsapp:poll_url' pk=question.pk %}">Vote</a></span>
+                        </p>
+                        <p class="card-footer-item card-button">
+                            <span><a href="{% url 'pollsapp:results_url' pk=question.pk %}">Results</a></span>
+                        </p>
+                    </footer>
+                </div>
+                {% endfor %}
+                {% else %}
+                    <h1 class="title has-text-centered has-text-danger-dark">No Questions Available </h1>
+                {% endif %}
+                <!-- Pagination Code | Copied right from Docs https://docs.djangoproject.com/en/4.1/topics/pagination/ -->
+                <div class="pagination">
+                    <span class="step-links mx-auto">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div> 
+            </div>
+        </div>
+    </div>  
+</section>
+{% endblock content %}
+
+
+<!--
+    style="border: 1px solid black"
+-->
+

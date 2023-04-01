@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Create a new poll{% endblock title %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-third is-offset-one-third" style="border: 1px solid black">
+                <h1 class="title">Create a new poll to vote on</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ question_form.question_text.label|title }}:
+                    {{ question_form.question_text }}
+                    <h3>Poll Choices:</h3>
+                    {{ formset.management_form }}
+                    <div id="choice-form-group">
+                        {% for form in formset %}
+                        <div class="choice-form">
+                            <li>{{ form.choice_text }}</li>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="buttons my-2">
+                        <button class="button is-primary" id="add_more" type="button">+1 Choice</button>
+                        <button class="button is-link" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script to add additional choice fields on button click -->
+<div id="empty_form" style="display:none"><li>{{ formset.empty_form.choice_text}}</li></div>
+
+<script type="text/javascript">
+
+    const add_more_btn = document.getElementById('add_more')
+    const total_new_forms = document.getElementById('id_choice_set-TOTAL_FORMS')
+
+    add_more_btn.addEventListener('click', () => {
+        const current_choice_forms = document.getElementsByClassName('choice-form')
+        const currentFormCount = current_choice_forms.length
+        const form_insert_location = document.getElementById('choice-form-group')
+        const empty_html_form = document.getElementById('empty_form')   
+        const new_form = empty_html_form.cloneNode(true)
+
+        new_form.setAttribute('class', 'choice-form')
+        //new_form.setAttribute('id', `form-${currentFormCount}`)
+        new_form.removeAttribute('style')
+        const regex = new RegExp('__prefix__', 'g')
+        new_form.innerHTML = new_form.innerHTML.replace(regex, currentFormCount)
+        total_new_forms.setAttribute('value', currentFormCount + 1)
+        form_insert_location.append(new_form)
+    });
+</script>
+
+{% endblock content %}
+
+<!--
+    style="border: 1px solid black"
+-->
